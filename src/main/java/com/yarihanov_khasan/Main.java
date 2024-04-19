@@ -1,6 +1,7 @@
 package com.yarihanov_khasan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -12,13 +13,13 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int number = in.nextInt();
         Set<Integer> result = new HashSet<>();
+        HashMap<Integer, Integer> differenceAdnIndexes = new HashMap<>();
 
         for (int i = 0; i <= array.size() - 1; i++) {
-            for (int j = 0; j <= array.size() - 1; j++) {
-                if (array.get(i) + array.get(j) == number && i != j) {
-                    result.add(i);
-                    result.add(j);
-                }
+            int diffrence = number - array.get(i);
+            differenceAdnIndexes.put(diffrence, i);
+            if (differenceAdnIndexes.containsKey(array.get(i)) && result.add(differenceAdnIndexes.get(array.get(i)))) {
+                result.add(i);
             }
         }
 
